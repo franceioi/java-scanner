@@ -1,0 +1,27 @@
+42  42000000000  
+42.5  42.5  
+
+
+Test line
+ a
+
+
+
+
+
+public boolean hasNext();
+    public String next();
+    public String nextLine();
+    public int nextInt();
+    public long nextLong();
+    
+
+
+
+
+
+
+
+
+
+

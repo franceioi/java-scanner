@@ -27,4 +27,6 @@ Original functions :
 
 Added functions :
 
-   public char nextChar();
+    public char nextChar();
+
+

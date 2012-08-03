@@ -5,7 +5,10 @@ cmdAlgorea="cat tmp.in | ./Speed algorea"
 firstMemJava=-1
 firstMemAlgorea=-1
 
-for nb in 1000 10000 25000 50000 75000 100000 150000 200000
+echo "Comparison of Java's Scanner / our Scanner"
+echo ""
+
+for nb in 10 5000 10000 25000 50000 75000 100000 150000 200000
 do
    echo "For $nb integers :"
    
@@ -30,18 +33,19 @@ do
    # Remove initial memory usage
    if [ $firstMemJava -eq -1 ]
    then
-      firstMemJava=$memMaxJava
-      firstMemAlgorea=$memMaxAlgorea
+      firstMemJava=$(($memMaxJava - 100))
+      firstMemAlgorea=$(($memMaxAlgorea - 100))
    fi;
-   memMaxJava=$(($memMaxJava - $firstMemJava + 1))
-   memMaxAlgorea=$(($memMaxAlgorea - $firstMemAlgorea + 1))
+
+   #memMaxJava=$(($memMaxJava - $firstMemJava))
+   #memMaxAlgorea=$(($memMaxAlgorea - $firstMemAlgorea))
 
    # Compute ratios and plot results
    ratioTime=$(echo "scale=1;$timeMaxJava / $timeMaxAlgorea" | bc)
    ratioMem=$(echo "scale=1;$memMaxJava / $memMaxAlgorea" | bc)
 
-   echo -e "Elapsed time : \t${timeMaxJava}s vs ${timeMaxAlgorea}s"
-   echo -e "Max memory : \t${memMaxJava}K vs ${memMaxAlgorea}K"
+   echo -e "Time : ${timeMaxJava}s vs ${timeMaxAlgorea}s"
+   echo -e "Memory : ${memMaxJava}K vs ${memMaxAlgorea}K"
    echo -e "Ratios (time/mem) : $ratioTime and $ratioMem"
    echo ""
 

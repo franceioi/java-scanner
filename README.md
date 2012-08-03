@@ -40,48 +40,53 @@ See http://stackoverflow.com/questions/9055788/java-scanner-0-is-not-a-double fo
 Our Scanner fixes that
 
 ## Speed and memory usage
-In our benchmarks we are reading `N` integers on standard input.
+For this benchmark we are reading `N` integers on standard input, the most common usage in algorithmic contests.
 
-The memory is the memory used after initialisation.
+      Comparison of Java's Scanner / our Scanner
 
-      For 1000 integers :
-      Elapsed time : 	.10s vs .05s
-      Max memory : 	1K vs 1K
-      Ratios (time/mem) : 2.0 and 1.0
+      For 10 integers :
+      Time : .07s vs .07s
+      Memory : 25164K vs 20760K
+      Ratios (time/mem) : 1.0 and 1.2
+
+      For 5000 integers :
+      Time : .26s vs .08s
+      Memory : 30036K vs 21596K
+      Ratios (time/mem) : 3.2 and 1.3
 
       For 10000 integers :
-      Elapsed time : 	.42s vs .06s
-      Max memory : 	4977K vs 5K
-      Ratios (time/mem) : 7.0 and 995.4
+      Time : .44s vs .06s
+      Memory : 30956K vs 22380K
+      Ratios (time/mem) : 7.3 and 1.3
 
       For 25000 integers :
-      Elapsed time : 	.99s vs .08s
-      Max memory : 	8477K vs 505K
-      Ratios (time/mem) : 12.3 and 16.7
+      Time : 1.02s vs .07s
+      Memory : 34464K vs 23704K
+      Ratios (time/mem) : 14.5 and 1.4
 
       For 50000 integers :
-      Elapsed time : 	2.16s vs .14s
-      Max memory : 	13613K vs 5029K
-      Ratios (time/mem) : 15.4 and 2.7
+      Time : 1.97s vs .11s
+      Memory : 39596K vs 25788K
+      Ratios (time/mem) : 17.9 and 1.5
 
       For 75000 integers :
-      Elapsed time : 	3.59s vs .22s
-      Max memory : 	19269K vs 5297K
-      Ratios (time/mem) : 16.3 and 3.6
+      Time : 2.93s vs .20s
+      Memory : 44988K vs 26060K
+      Ratios (time/mem) : 14.6 and 1.7
 
       For 100000 integers :
-      Elapsed time : 	4.01s vs .19s
-      Max memory : 	24141K vs 5293K
-      Ratios (time/mem) : 21.1 and 4.5
+      Time : 3.85s vs .23s
+      Memory : 50456K vs 26056K
+      Ratios (time/mem) : 16.7 and 1.9
 
       For 150000 integers :
-      Elapsed time : 	5.73s vs .30s
-      Max memory : 	34673K vs 5293K
-      Ratios (time/mem) : 19.1 and 6.5
+      Time : 5.68s vs .27s
+      Memory : 60648K vs 26060K
+      Ratios (time/mem) : 21.0 and 2.3
 
       For 200000 integers :
-      Elapsed time : 	8.86s vs .34s
-      Max memory : 	49161K vs 5301K
-      Ratios (time/mem) : 26.0 and 9.2
+      Time : 6.86s vs .37s
+      Memory : 75148K vs 26320K
+      Ratios (time/mem) : 18.5 and 2.8
 
 

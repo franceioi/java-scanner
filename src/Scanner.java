@@ -93,13 +93,15 @@ public class Scanner {
             sb.append((char)c);
             c = in.read();
             if (c == -1)
-              throw new NoSuchElementException();
+               throw new NoSuchElementException();// EOF
          }
          // consommer aussi le retour chariot
          c = in.read();
       } catch (IOException e) {
          c = -1;
          return "";
+      } catch (NoSuchElementException e) {//EOF
+         return sb.toString();
       }
       return sb.toString();   
    }

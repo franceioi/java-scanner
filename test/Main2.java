@@ -10,5 +10,9 @@ class Main
 
       assert (line.length() == 6);
       assert (line.equals("azerty"));
+      line = sc.nextLine();
+      line = sc.nextLine();
+      line = sc.nextLine();
+      line = sc.nextLine();
    }
 }

@@ -8,29 +8,31 @@ import java.util.NoSuchElementException;
 import java.lang.Character;
 
 /**
- * Classe de remplacement pour Scanner
- * - est plus rapide
- * - permet de soumettre un programme à un juge qui ne connait que JDK1.1
+ * Class to replace the java.Util.Scanner
+ * - much much faster
+ * - uses much less memory
+ * - contains all necessary functions for algorithmic exercises 
+ *   (but not all the original functions)
  * 
  */
 class Locale {
-   final static int US=0;
+   final static int US = 0;
 }
 
 public class Scanner {
-   // le BufferedInputStream a l'avantage par rapport au InputStream
-   // de faire moins d'appels systeme lors de la lecture
+   // BufferedInputStream is using less system calls than InputStream
+   // when reading data
    private BufferedInputStream in;
 
-   // c contient le prochain caractere que read() va rendre, ou -1 si EOF
+   // c contains the next character that read() will return or -1 if EOF
    int c;
 
-   boolean enDebutDeLigne;
+   boolean atStartOfLine;
 
    public Scanner(InputStream stream) {
       in = new BufferedInputStream(stream);
       try {
-         enDebutDeLigne = true;
+         atStartOfLine = true;
          c  = (char)in.read();
       } catch (IOException e) {
          c  = -1;
@@ -38,22 +40,22 @@ public class Scanner {
    }
 
    public boolean hasNext() {
-      if (!enDebutDeLigne) 
+      if (!atStartOfLine) 
          throw new Error("hasNext ne fonctionne seulement apres un appel a nextLine");
       return c != -1;
    }
 
    public String next() {
       StringBuffer sb = new StringBuffer();
-      enDebutDeLigne = false;
+      atStartOfLine = false;
       try {
-         // ignorer les blancs en debut
+         // ignore blanks at the start
          while (c <= ' ') {
             c = in.read();
             if (c == -1)
               throw new NoSuchElementException();
          } 
-         // consommer tout ce qui n'est pas blanc
+         // eat everything that is not a space
          while (c > ' ') {
             sb.append((char)c);
             c = in.read();
@@ -86,21 +88,25 @@ public class Scanner {
 
    public String nextLine() {
       StringBuffer sb = new StringBuffer();
-      enDebutDeLigne = true;
+      atStartOfLine = true;
       try {
-         // consommer toute la ligne
+         // eat all the line
          while (c != '\n') {
             sb.append((char)c);
             c = in.read();
             if (c == -1)
                throw new NoSuchElementException();// EOF
          }
-         // consommer aussi le retour chariot
+         // eat the \n
          c = in.read();
       } catch (IOException e) {
          c = -1;
          return "";
       } catch (NoSuchElementException e) {//EOF
+         //Nothing to do
+          if (sb.length() == 1 && (int)sb.charAt(0) == ((1 << 16) - 1))
+            throw new NoSuchElementException();
+         // Last line with no newline...
          return sb.toString();
       }
       return sb.toString();   
@@ -141,5 +147,5 @@ public class Scanner {
    
 
 
-   public void useLocale(int l) {} // on peut ignorer cet appel
+   public void useLocale(int l) {} // we can ignore this call
 }
